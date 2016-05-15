@@ -39,10 +39,12 @@ NA = 'NA'
 
 
 def get_timestamp():
+    """Return current local time"""
     return str(datetime.datetime.now())
 
 
 def get_surge(lat, lon):
+    """Retrieve current uberX surge multiplier at (lat, lon)"""
     result = {}    
     result['surge_multiplier'] = NA
     
@@ -66,6 +68,7 @@ def get_surge_values(lat, lon):
     
     
 def get_weather(lat, lon):
+    """Retrieve current weather at (lat, lon) from OpenWeatherMap"""
     result = {}
     result['weather'] = NA
     result['temperature'] = NA
@@ -107,6 +110,7 @@ def get_weather_values(lat, lon):
     
 
 def get_wmata_incident():
+    """Return current WMATA incidents by line"""
     result = {}
     result['n_incident_red'] = NA
     result['n_incident_orange'] = NA
@@ -162,6 +166,8 @@ def collect_data():
 
 
 def collect_data_continuous(filename, t_interval = 60, t_total = 60*60*24*30):
+    """Collect data, save to file, repeat"""
+    
     #if file does not exist, write header
     if not os.path.isfile(filename):
         with open(filename, 'ab') as f:
